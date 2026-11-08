@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Secure E-Notes Management System Using Spring Boot</title>
+  <style>
+    body {
+      font-family: "Times New Roman", serif;
+      font-size: 12pt;
+      line-height: 2;
+      margin: 1in;
+      color: #000;
+    }
+    h1, h2, h3 {
+      font-weight: bold;
+      margin-top: 18pt;
+      margin-bottom: 8pt;
+    }
+    h1 { font-size: 18pt; text-align: center; }
+    h2 { font-size: 14pt; }
+    h3 { font-size: 12pt; }
+    p { margin: 0 0 10pt 0; text-align: justify; }
+    ol, ul { margin-top: 0; margin-bottom: 10pt; }
+    .center { text-align: center; }
+    .page-break { page-break-before: always; }
+  </style>
+</head>
+<body>
+  <div class="center">
+    <h1>Secure E-Notes Management System Using Spring Boot</h1>
+    <p><strong>Project Report</strong></p>
+  </div>
+
+  <h2>Project Topic</h2>
+  <p>Web-based secure note management system for authenticated users.</p>
+
+  <h2>Abstract</h2>
+  <p>This project presents the design and development of a web-based application for secure personal note management. In academic and professional environments, users frequently depend on handwritten notebooks, unsecured text files, or scattered digital documents for storing important information. These approaches often create problems such as poor organization, difficulty in retrieval, risk of unauthorized access, and possible loss of data. To address these issues, the project develops a centralized e-notes platform that allows registered users to create, view, edit, and delete notes through a secure browser-based interface.</p>
+  <p>The system is implemented using Java 17 and Spring Boot 3 with supporting technologies including Spring MVC, Spring Security, Spring Data JPA, Hibernate, Thymeleaf, Bootstrap, and MySQL. The application provides user registration, login authentication, password encryption using BCrypt, and role-based access to user-specific resources. A notable feature of the system is its account-protection mechanism. If a user enters incorrect credentials multiple times, the account is temporarily locked for a fixed duration. This helps reduce unauthorized login attempts and improves system trustworthiness.</p>
+  <p>The backend architecture follows a layered approach consisting of controller, service, repository, entity, and configuration classes. User data and note data are stored in relational database tables and mapped through JPA entities. Each note is linked to a specific user, ensuring that only the owner can access or modify it. The front end is built using Thymeleaf templates integrated with Bootstrap to provide a clean and responsive user interface.</p>
+  <p>From a research and application perspective, the project demonstrates how secure note management can be achieved through modern Java-based web technologies. The study focuses on the practical implementation of authenticated note storage and retrieval rather than large-scale enterprise deployment. The resulting application shows that a lightweight, role-based web system can offer improved usability, security, and data organization compared with conventional note-handling methods.</p>
+  <p>The project is relevant to business and technology because it reflects real-world requirements of secure information management, user authentication, and database-driven web application development. It also helps develop conceptual, analytical, and implementation skills in software engineering, security integration, user interface design, and backend data management.</p>
+
+  <h2>Introduction</h2>
+  <p>Digital transformation has changed the way information is created, stored, and accessed. Notes, reminders, and small textual records are important forms of information in both education and industry. Students use notes to maintain lecture points, assignments, and references. Professionals use notes for tasks, observations, process records, and short documentation. Even though digital systems are widely available, many users still rely on fragmented or insecure methods to manage their notes.</p>
+  <p>An effective note management system should allow easy creation and retrieval of information while also protecting sensitive data from unauthorized access. Security becomes especially important when note data includes personal, academic, or work-related content. Many basic note systems focus on usability but overlook account protection and user-based data segregation. This project is therefore centered on the development of a secure and user-oriented e-notes platform.</p>
+  <p>The application created in this project uses Spring Boot to simplify backend development and Spring Security to enforce authenticated access. Each user is allowed to manage only their own notes. Passwords are not stored in plain text but are encrypted using BCrypt. To improve protection further, failed login attempts are tracked and repeated failures lead to temporary account locking. This feature reflects practical security practices used in modern web applications.</p>
+
+  <h2>Need for the Study</h2>
+  <ol>
+    <li>Physical notebooks can be lost, damaged, or misplaced.</li>
+    <li>Unsecured digital files provide weak protection against unauthorized access.</li>
+    <li>Scattered note storage makes retrieval and updating inefficient.</li>
+    <li>Manual management does not support structured user authentication.</li>
+    <li>Existing simple note applications may not demonstrate core software engineering concepts required for academic learning.</li>
+  </ol>
+  <p>The proposed system addresses these issues by offering secured login, user-linked note storage, and a centralized interface for note operations.</p>
+
+  <h2>Research Problem</h2>
+  <p>How can a secure, simple, and user-specific web-based note management system be designed and implemented using Spring Boot and MySQL to improve note organization and access control?</p>
+
+  <h2>Aim</h2>
+  <p>To develop a secure e-notes web application that enables authenticated users to manage personal notes efficiently.</p>
+
+  <h2>Objectives</h2>
+  <ol>
+    <li>To create a registration system for new users.</li>
+    <li>To implement secure authentication using Spring Security.</li>
+    <li>To encrypt user passwords using BCrypt.</li>
+    <li>To develop note creation, viewing, updating, and deletion functions.</li>
+    <li>To maintain note ownership by mapping notes to registered users.</li>
+    <li>To implement account locking after multiple failed login attempts.</li>
+    <li>To store application data using JPA and MySQL.</li>
+    <li>To build an easy-to-use interface with Thymeleaf and Bootstrap.</li>
+  </ol>
+
+  <h2>Scope of the Study</h2>
+  <p>The scope of this project is limited to the design, development, and functional analysis of a secure personal note management application. The system supports user registration, login, user-specific note creation, note viewing, note editing, note deletion, and temporary account locking after repeated failed login attempts. The project is intended as a browser-based academic application built with modern Java web technologies.</p>
+  <p>The study does not include advanced collaboration features such as note sharing, attachments, category tagging, reminders, mobile application support, or an administrative dashboard. It also does not attempt enterprise-scale deployment or performance benchmarking. These boundaries help keep the project focused, realistic, and aligned with the current implementation.</p>
+
+  <h2>Hypotheses</h2>
+  <p><strong>Null Hypothesis (H0):</strong> The implementation of a secure web-based e-notes system does not significantly improve note management efficiency and access control compared with conventional note handling methods.</p>
+  <p><strong>Alternative Hypothesis (H1):</strong> The implementation of a secure web-based e-notes system significantly improves note management efficiency and access control compared with conventional note handling methods.</p>
+
+  <h2>Literature Review</h2>
+  <p>The present project is grounded in the broader field of web application development, database systems, and information security. Previous academic and industry work in this area generally highlights three core ideas: centralized information management, secure user authentication, and persistent data storage.</p>
+  <p>Studies on information systems emphasize that digital record management improves accessibility, consistency, and retrieval speed. When information is stored in a structured database rather than in isolated files or physical records, users can access it more reliably and maintain it more efficiently. This idea supports the use of relational databases in note management applications.</p>
+  <p>Research in software engineering also shows that layered architectures improve maintainability and scalability. In this project, the controller-service-repository structure reflects that principle by separating presentation logic, business logic, and persistence logic. Such modular organization helps future enhancement and testing.</p>
+  <p>Literature on authentication and access control consistently recommends secure password handling and restricted access to user-owned resources. BCrypt hashing is widely used because it provides stronger password protection than plain text or weak encoding methods. Similarly, role-based access and login attempt monitoring are accepted practices for reducing unauthorized access.</p>
+  <p>Modern web development studies further encourage frameworks that reduce configuration overhead and accelerate enterprise-ready application development. Spring Boot is frequently adopted in academic and professional settings because it supports rapid development, dependency management, and integration with MVC, security, and JPA modules. Thymeleaf is also recognized as a practical server-side templating engine for Java applications that require dynamic page rendering.</p>
+  <p>Another important theme in the literature is the role of usability in information systems. A system may be technically secure, but if it is difficult to use, users may avoid it or use insecure alternatives. For this reason, simple interfaces and predictable workflows are often treated as part of successful system design. In the present project, the use of Bootstrap and Thymeleaf helps provide a straightforward user journey from registration to login and then to note management.</p>
+
+  <h2>Research Methodology</h2>
+  <h3>Research Design</h3>
+  <p>The study adopts a descriptive and exploratory design. It is descriptive because it explains the design and behavior of the developed application. It is exploratory because it investigates how a secure note-management solution can be implemented using Spring Boot technologies.</p>
+  <h3>Sampling Technique</h3>
+  <p>The project primarily follows a non-probability sampling approach, specifically convenience-based functional validation, where representative use cases such as user registration, login, note creation, note editing, note retrieval, and deletion are considered for evaluation.</p>
+  <h3>Data Collection</h3>
+  <p>The study uses both primary and secondary sources. Primary sources include functional behavior observed from developing and testing the application modules and input-output validation of registration, authentication, and CRUD operations. Secondary sources include Spring Boot documentation, Spring Security concepts, database design references, and general literature on information systems and secure web applications.</p>
+  <h3>Data Preparation</h3>
+  <p>The project data is prepared by classifying the system into modules and recording expected and observed outcomes for key operations such as registration, login, failed login handling, note insertion, note retrieval, note modification, and note deletion.</p>
+  <h3>Data Analysis</h3>
+  <p>The analysis is based on module-wise functional verification and comparison between intended system behavior and observed output. Security features such as password encryption and account lock behavior are also considered during evaluation.</p>
+
+  <h2>System Analysis and Design Summary</h2>
+  <ol>
+    <li><strong>Entity layer:</strong> Contains User and Notes entities.</li>
+    <li><strong>Repository layer:</strong> Provides data access through UserRepository and NotesRepository.</li>
+    <li><strong>Service layer:</strong> Handles business logic such as user registration, password encoding, failed-attempt tracking, and account unlocking.</li>
+    <li><strong>Controller layer:</strong> Manages HTTP requests for registration, login, and note operations.</li>
+    <li><strong>Configuration layer:</strong> Defines password encoding, custom authentication handlers, custom user details, and security rules.</li>
+    <li><strong>Presentation layer:</strong> Uses Thymeleaf templates for home, registration, login, add note, view note, and edit note screens.</li>
+  </ol>
+
+  <h2>Features Implemented in the Current Project</h2>
+  <ol>
+    <li>User registration with email uniqueness checking</li>
+    <li>Password encryption with BCrypt</li>
+    <li>Login using Spring Security</li>
+    <li>User role assignment as ROLE_USER</li>
+    <li>Temporary account locking after three failed login attempts</li>
+    <li>Automatic unlock after lock duration expires</li>
+    <li>Add note feature</li>
+    <li>View note list for logged-in user</li>
+    <li>Edit own note feature</li>
+    <li>Delete own note feature</li>
+    <li>CSRF token inclusion in forms</li>
+    <li>User-specific data access</li>
+  </ol>
+
+  <h2>Results</h2>
+  <p>The developed system successfully demonstrates the core behavior expected from a secure note management application. The registration module supports user enrollment and prevents duplicate email registration. The authentication module secures application access through Spring Security and encrypted password storage. The note management module enables a logged-in user to add, view, edit, and delete notes. Since notes are mapped to individual users, unauthorized cross-user modification is reduced at the application level.</p>
+  <p>The project also includes a basic defensive security mechanism in the form of failed login tracking. After repeated invalid login attempts, the user account is temporarily locked. This helps show practical application of security logic beyond basic username-password verification.</p>
+  <p>The results are both theoretical and empirical. Theoretical results are reflected in the successful application of concepts such as layered architecture, authentication, authorization, and object-relational mapping. Empirical results are reflected in the observed functional behavior of the application during module execution.</p>
+
+  <h2>Interpretation of Findings</h2>
+  <p>The findings indicate that a secure e-notes system can be effectively implemented using Spring Boot with manageable development effort. The project verifies that user authentication, note ownership, and database persistence can be combined into a coherent application. It also highlights the value of integrating security at the design stage rather than treating it as an optional add-on.</p>
+  <p>The study also reveals that environment configuration remains an important part of deployment. The project depends on database environment variables for successful runtime operation. This shows that modern application development requires both coding skills and deployment awareness.</p>
+
+  <h2>Contribution of the Project</h2>
+  <p>This project contributes by developing a secure and structured web-based e-notes management system using Spring Boot. Its main contribution is the integration of user registration, secure login, password encryption, and user-specific note management in a single application. The project also contributes by implementing an account-lock mechanism after multiple failed login attempts, which improves system security. Academically, it demonstrates the practical use of layered architecture, Spring Security, JPA, Thymeleaf, and MySQL in building a real-world web application. Practically, it provides a simple and useful solution for organized and protected note management.</p>
+
+  <h2>My Contribution to the Project</h2>
+  <p>My contribution to this project was the complete design and development of the Secure E-Notes Management System using Spring Boot. I was involved in analyzing the problem, selecting the technology stack, designing the database structure, and implementing the major modules of the application. I developed the user registration and login system, integrated Spring Security for authentication and authorization, implemented password encryption using BCrypt, and created the note management functions such as add, view, edit, and delete notes. I also implemented the account-lock feature after multiple failed login attempts and designed the frontend pages using Thymeleaf and Bootstrap. In addition, I handled database connectivity, module integration, testing of core functionalities, and preparation of the project documentation.</p>
+
+  <h2>Recommendations</h2>
+  <ol>
+    <li>Add field validation for registration and note inputs.</li>
+    <li>Introduce note search, category, and pagination features.</li>
+    <li>Add profile management and password reset functionality.</li>
+    <li>Use DTOs and validation annotations for better input control.</li>
+    <li>Add automated tests using H2 or test-specific configuration.</li>
+    <li>Improve auditing by storing note update timestamps.</li>
+    <li>Introduce admin analytics if the project is extended further.</li>
+    <li>Improve UI design and accessibility for broader usability.</li>
+  </ol>
+
+  <h2>Implications of Theory and Practice</h2>
+  <p><strong>Theoretical implications:</strong> The project supports software engineering concepts such as layered architecture, data modeling, authentication, authorization, and secure storage. It demonstrates how theoretical concepts from web technology, database management, and information security can be translated into a working application.</p>
+  <p><strong>Practical implications:</strong> The application can serve as a basic personal productivity tool for users who want organized online note storage. More importantly, it demonstrates practical implementation patterns used in real web applications, including user-based access control, password hashing, repository-driven persistence, and MVC-based frontend integration.</p>
+
+  <h2>Limitations</h2>
+  <ol>
+    <li>The system currently supports only one main user role.</li>
+    <li>Advanced note features such as file attachments, search, labels, and reminders are not included.</li>
+    <li>No dedicated admin dashboard is implemented.</li>
+    <li>Automated testing is not fully configured for isolated database-independent execution.</li>
+    <li>The current project focuses on functional behavior rather than large-scale deployment.</li>
+  </ol>
+
+  <h2>Future Scope</h2>
+  <p>The project can be extended in several useful directions. Future versions may include note search, note categorization, rich text editing, reminder support, password reset, profile update functionality, and an administrator dashboard. The testing strategy can also be improved by using a separate in-memory database for automated test execution. If needed, the project may later be adapted for REST APIs or mobile integration.</p>
+
+  <h2>Project Execution Requirement</h2>
+  <p>To run this project successfully, the required database environment variables must be set before starting the application. The project uses <code>DB_URL</code>, <code>DB_USERNAME</code>, and <code>DB_PASSWORD</code> for MySQL database connectivity. After setting these environment variables, the Spring Boot application can be started, and the project will run properly.</p>
+  <p><strong>PowerShell commands:</strong></p>
+  <p><code>cd E:\Spring_Boot_Learn\enotes_tracker\Enotes_spring_boot_project</code><br>
+  <code>$env:DB_URL="jdbc:mysql://localhost:3306/enotes_db"</code><br>
+  <code>$env:DB_USERNAME="root"</code><br>
+  <code>$env:DB_PASSWORD="YOUR_DB_PASSWORD"</code><br>
+  <code>.\mvnw.cmd spring-boot:run</code></p>
+
+  <h2>Viva Questions and Model Answers</h2>
+  <p><strong>1. What is the main objective of your project?</strong><br>
+  The main objective of my project is to develop a secure web-based e-notes management system in which registered users can create, view, edit, and delete their personal notes.</p>
+  <p><strong>2. Which technologies have you used in this project and why?</strong><br>
+  I used Java 17, Spring Boot, Spring MVC, Spring Security, Spring Data JPA, Hibernate, Thymeleaf, Bootstrap, MySQL, and Maven because they support secure, maintainable, and database-driven web application development.</p>
+  <p><strong>3. How does your project ensure data security?</strong><br>
+  The project uses BCrypt password encryption, Spring Security based authentication, user-specific note access, and temporary account locking after multiple failed login attempts.</p>
+
+  <h2>References</h2>
+  <ol>
+    <li>Spring. (n.d.). <em>Spring Boot documentation</em>. https://spring.io/projects/spring-boot</li>
+    <li>Spring. (n.d.). <em>Spring Security documentation</em>. https://spring.io/projects/spring-security</li>
+    <li>Spring. (n.d.). <em>Spring Data JPA documentation</em>. https://spring.io/projects/spring-data-jpa</li>
+    <li>Hibernate. (n.d.). <em>Hibernate ORM documentation</em>. https://hibernate.org/orm/documentation/</li>
+    <li>Thymeleaf. (n.d.). <em>Thymeleaf documentation</em>. https://www.thymeleaf.org/documentation.html</li>
+    <li>Bootstrap. (n.d.). <em>Bootstrap documentation</em>. https://getbootstrap.com/docs/5.0/getting-started/introduction/</li>
+    <li>Oracle. (n.d.). <em>Java documentation</em>. https://docs.oracle.com/en/java/</li>
+    <li>MySQL. (n.d.). <em>MySQL documentation</em>. https://dev.mysql.com/doc/</li>
+    <li>Schildt, H. (2018). <em>Java: The complete reference</em> (11th ed.). McGraw-Hill Education.</li>
+    <li>Silberschatz, A., Korth, H. F., &amp; Sudarshan, S. (2019). <em>Database system concepts</em> (7th ed.). McGraw-Hill.</li>
+  </ol>
+
+  <h2>Conclusion</h2>
+  <p>The project successfully delivers a secure and structured web-based e-notes management system using Spring Boot. It addresses the common difficulties associated with manual and unsecured note handling by offering registration, authentication, note CRUD operations, and account-protection features. The use of Spring Security, BCrypt, Thymeleaf, JPA, and MySQL makes the system both practical and academically relevant.</p>
+  <p>The study confirms that secure note management can be effectively achieved through modern Java web technologies. In addition to solving a meaningful problem, the project also demonstrates important software development concepts such as modular architecture, database integration, and access control.</p>
+</body>
+</html>
